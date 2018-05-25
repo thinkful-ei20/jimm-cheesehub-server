@@ -2,7 +2,6 @@
 
 A template for developing and deploying Node.js apps.
 
-
 ## Getting started
 
 ### Setting up a project
