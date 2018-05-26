@@ -2,11 +2,14 @@
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
 const { DATABASE_URL } = require('./config');
 
 function dbConnect(url = DATABASE_URL) {
   return mongoose.connect(url)
+    .then(instance => {
+      const conn = instance.connections[0];
+      console.info(`Connected to: mongodb://${conn.host}:${conn.port}/${conn.name}`);
+    })
     .catch(err => {
       console.error('Mongoose failed to connect');
       console.error(err);
